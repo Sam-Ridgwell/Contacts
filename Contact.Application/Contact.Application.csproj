@@ -11,8 +11,4 @@
     <ProjectReference Include="..\Contacts.Core\Contacts.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataObjects\" />
-  </ItemGroup>
-
 </Project>

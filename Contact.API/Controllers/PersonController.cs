@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Contact.Application.Person;
-using Contact.Domain.DataObjects;
+using Contact.Domain.Person.DataObjects;
+using Contact.Domain.Person.Services;
 
 namespace Contact.API.Controllers
 {

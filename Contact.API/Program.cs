@@ -1,5 +1,6 @@
 using Contact.Infrastructure.Person;
 using Contact.Application.Person;
+using Contact.Domain.Person.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

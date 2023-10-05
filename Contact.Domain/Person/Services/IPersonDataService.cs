@@ -1,7 +1,7 @@
-﻿using Contact.Domain.DataObjects;
+﻿using Contact.Domain.Person.DataObjects;
 using Contacts.Core;
 
-namespace Contact.Application.Person
+namespace Contact.Domain.Person.Services
 {
     public interface IPersonDataService
     {

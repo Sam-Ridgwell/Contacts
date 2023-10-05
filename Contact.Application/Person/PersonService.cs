@@ -1,5 +1,8 @@
-﻿using Contact.Domain.DataObjects;
+﻿using Contact.Domain.Person.DataObjects;
+using Contact.Domain.Person.Services;
+using Contact.Domain.Person.Validators;
 using Contacts.Core;
+using FluentValidation;
 
 namespace Contact.Application.Person
 {
@@ -14,37 +17,23 @@ namespace Contact.Application.Person
 
         public Result<bool> AddPerson(PersonDto personApo)
         {
-            throw new NotImplementedException();
+            var person = new Domain.Person.Entities.Person(personApo.Name);
 
-            //var person = new Domain.Objects.Person(personApo.Name);
+            PersonValidator personValidator = new();
 
-            //var personIsValid = person.Validate();
+            var personIsValid = personValidator.Validate(person);
 
-            //if (!personIsValid.IsSuccess())
-            //{
-            //    return new Result<bool>(personIsValid.GetException());
-            //}
+            if (!personIsValid.IsValid)
+            {
+                return new Result<bool>(new ValidationException(personIsValid.Errors));
+            }
 
-            //return _personDataService.AddPerson(new PersonDto(person?.Name?.Value ?? ""));
-
+            return _personDataService.AddPerson(new PersonDto(person.Name));
         }
 
         public Result<PersonDto> GetPersonById(int id)
         {
-            throw new NotImplementedException();
-
-            //var personData = _personDataService.GetPersonById(id);
-
-            //var person = new Domain.Objects.Person(personData.Name);
-
-            //var personIsValid = person.Validate();
-
-            //if (!personIsValid.IsSuccess())
-            //{
-            //    return new Result<PersonDto>(personIsValid.GetException());
-            //}
-
-            //return new Result<PersonDto>(new PersonApo { Name = person?.Name?.Value ?? "" });
+            return new Result<PersonDto>(_personDataService.GetPersonById(id));
         }
     }
 }

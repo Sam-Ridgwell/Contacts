@@ -1,5 +1,5 @@
-﻿using Contact.Application.Person;
-using Contact.Domain.DataObjects;
+﻿using Contact.Domain.Person.DataObjects;
+using Contact.Domain.Person.Services;
 
 namespace Contact.Infrastructure.Person
 {

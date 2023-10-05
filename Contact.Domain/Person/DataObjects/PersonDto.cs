@@ -1,4 +1,4 @@
-﻿namespace Contact.Domain.DataObjects
+﻿namespace Contact.Domain.Person.DataObjects
 {
     public class PersonDto
     {
