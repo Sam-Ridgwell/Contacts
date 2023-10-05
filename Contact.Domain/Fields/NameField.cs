@@ -24,9 +24,13 @@ namespace Contact.Domain.Fields
 
         private static bool IsValueValid(string value)
         {
-            if (string.IsNullOrEmpty(value))
+            //name can only contain letters, spaces and hyphens
+            foreach (var c in value)
             {
-                return false;
+                if (!char.IsLetter(c) && c != ' ' && c != '-')
+                {
+                    return false;
+                }
             }
 
             return true;
