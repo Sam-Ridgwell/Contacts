@@ -1,6 +1,5 @@
 ﻿using Contact.Application.InfrastructureRepository.DataObjects;
 using Contact.Application.InfrastructureRepository.Interfaces;
-using Contacts.Core;
 
 namespace Contact.Infrastructure.Person
 {
