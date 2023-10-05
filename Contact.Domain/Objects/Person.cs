@@ -1,50 +1,28 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text;
 using Contact.Domain.Fields;
-using Contacts.Core;
 
 namespace Contact.Domain.Objects
 {
-    public class Person
+    public class Person : BaseObject
     {
-        readonly NameField _name = new();
 
         [Required]
-        public string Name { get => _name.Value; set => _name.Value = value; }
+        public NameField? Name { get; set; }
 
         public Person(string name)
         {
-            _name.Value = name;
-        }
-
-        public Result<bool> Validate()
-        {
-            var validationResults = new System.Collections.Generic.List<ValidationResult>();
-            var context = new ValidationContext(this);
-            var isValid = Validator.TryValidateObject(this, context, validationResults, true);
-
-            var isNameValidResult = _name.Validate().GetValue();
-
-            if (!isNameValidResult.Item1)
+            if (string.IsNullOrWhiteSpace(name))
             {
-                isValid = false;
-                validationResults.AddRange(isNameValidResult.Item2);
+                Name = null;
             }
-
-            if (!isValid)
+            
+            if(!string.IsNullOrWhiteSpace(name) && Name == null)
             {
-                var validationErrors = new StringBuilder();
-
-                foreach (var result in validationResults)
+                Name = new NameField
                 {
-                    validationErrors.AppendLine(result.ErrorMessage);
-                }
-                
-                return new Result<bool>(new ValidationException(validationErrors.ToString()));
-
+                    Value = name
+                };
             }
-
-            return new Result<bool>(isValid);
             
         }
     }

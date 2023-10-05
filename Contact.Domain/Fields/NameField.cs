@@ -7,7 +7,7 @@ namespace Contact.Domain.Fields
     /// This is a field for the name of a person.
     /// Used to replace the primitive string type.
     /// </summary>
-    public class NameField
+    public class NameField : IField<string>
     {
         private string _value = string.Empty;
 
@@ -23,6 +23,7 @@ namespace Contact.Domain.Fields
         {
             return _value;
         }
+
         public Result<(bool, List<ValidationResult>)> Validate()
         {
             var validationResults = new List<ValidationResult>();

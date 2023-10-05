@@ -28,7 +28,7 @@ namespace Contact.Application.Services
                 return new Result<bool>(personIsValid.GetException());
             }
 
-            return _personDataService.AddPerson(new PersonDto(person?.Name ?? ""));
+            return _personDataService.AddPerson(new PersonDto(person?.Name?.Value ?? ""));
 
         }
 
@@ -45,7 +45,7 @@ namespace Contact.Application.Services
                 return new Result<IPersonApo>(personIsValid.GetException());
             }
 
-            return new Result<IPersonApo>( new PersonApo { Name = person.Name });
+            return new Result<IPersonApo>( new PersonApo { Name = person?.Name?.Value ?? "" } );
         }
     }
 }
