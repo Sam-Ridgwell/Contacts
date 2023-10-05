@@ -3,8 +3,8 @@
     public class Result<T>
     {
         private T? _value;
-        private Exception? _exception = null;
-        private bool _isSuccess = false;
+        private Exception? _exception;
+        private bool _isSuccess;
 
         /// <summary>
         /// Creates a result with a value

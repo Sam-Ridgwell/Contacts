@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Contact.Domain.Fields
 {
@@ -27,13 +22,12 @@ namespace Contact.Domain.Fields
             _value = value;
         }
 
-        private bool IsValueValid(string value)
+        private static bool IsValueValid(string value)
         {
             if (string.IsNullOrEmpty(value))
             {
                 return false;
             }
-
 
             return true;
         }

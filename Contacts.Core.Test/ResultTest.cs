@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Contacts.Core.Test
+﻿namespace Contacts.Core.Test
 {
     public class ResultTests
     {
@@ -12,7 +6,7 @@ namespace Contacts.Core.Test
         public void TestGetValue_Success()
         {
             //Arrange
-            Result<string> result = new Result<string>("Test");
+            var result = new Result<string>("Test");
 
             //Act
             var value = result.GetValue();
@@ -25,20 +19,20 @@ namespace Contacts.Core.Test
         public void TestGetValue_Failure()
         {
             //Arrange
-            Result<string> result = new Result<string>(new Exception("Test"));
+            var result = new Result<string>(new Exception("Test"));
 
             //Act
             var value = result.GetValue();
 
             //Assert
-            Assert.Equal(default(string), value);
+            Assert.Null(value);
         }
 
         [Fact]
         public void TestSetValue_Success()
         {
             //Arrange
-            Result<int> result = new Result<int>(0);
+            var result = new Result<int>(0);
 
             //Act
             result.SetValue(10);
@@ -51,7 +45,7 @@ namespace Contacts.Core.Test
         public void TestSetValue_Failure()
         {
             //Arrange
-            Result<int> result = new Result<int>(new Exception("Test"));
+            var result = new Result<int>(new Exception("Test"));
 
             //Act
             result.SetValue(10);
@@ -64,7 +58,7 @@ namespace Contacts.Core.Test
         public void TestIsSuccess_Success()
         {
             //Arrange
-            Result<bool> result = new Result<bool>(true);
+            var result = new Result<bool>(true);
 
             //Act
             var isSuccess = result.IsSuccess();
@@ -77,7 +71,7 @@ namespace Contacts.Core.Test
         public void TestIsSuccess_Failure()
         {
             //Arrange
-            Result<bool> result = new Result<bool>(new Exception("Test"));
+            var result = new Result<bool>(new Exception("Test"));
 
             //Act
             var isSuccess = result.IsSuccess();
@@ -90,7 +84,7 @@ namespace Contacts.Core.Test
         public void TestGetException_Success()
         {
             //Arrange
-            Result<string> result = new Result<string>("Test");
+            var result = new Result<string>("Test");
 
             //Act
             var exception = result.GetException();
@@ -103,7 +97,7 @@ namespace Contacts.Core.Test
         public void TestGetException_Failure()
         {
             //Arrange
-            Result<string> result = new Result<string>(new Exception("Test"));
+            var result = new Result<string>(new Exception("Test"));
 
             //Act
             var exception = result.GetException();
@@ -116,7 +110,7 @@ namespace Contacts.Core.Test
         public void TestSetException_Success()
         {
             //Arrange
-            Result<int> result = new Result<int>(5);
+            var result = new Result<int>(5);
 
             //Act
             result.SetException(new Exception("Test"));
@@ -129,7 +123,7 @@ namespace Contacts.Core.Test
         public void TestSetException_Failure()
         {
             //Arrange
-            Result<int> result = new Result<int>(new Exception("Test"));
+            var result = new Result<int>(new Exception("Test"));
 
             //Act
             result.SetException(new Exception("New Test"));

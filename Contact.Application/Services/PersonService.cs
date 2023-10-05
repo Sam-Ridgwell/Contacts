@@ -10,8 +10,7 @@ namespace Contact.Application.Services
 {
     public class PersonService : IPersonService
     {
-
-        IPersonDataService _personDataService;
+        private readonly IPersonDataService _personDataService;
 
         public PersonService(IPersonDataService personDataService)
         {

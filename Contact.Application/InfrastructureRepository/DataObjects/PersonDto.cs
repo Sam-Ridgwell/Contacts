@@ -4,14 +4,11 @@ namespace Contact.Application.InfrastructureRepository.DataObjects
 {
     public class PersonDto : IPersonDto
     {
-        private readonly string _name;
-
-        public string Name { get => _name; }
+        public string Name { get; }
 
         public PersonDto(string name)
         {
-            _name = name;
+            Name = name;
         }
-
     }
 }

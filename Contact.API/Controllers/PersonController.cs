@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Contact.Application.Services.Interfaces;
 using Contact.Application.ApiRepository.ApiObjects;
-using System.ComponentModel.DataAnnotations;
 
 namespace Contact.API.Controllers
 {
@@ -9,7 +8,7 @@ namespace Contact.API.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
-        private IPersonService _personService;
+        private readonly IPersonService _personService;
 
         public PersonController(IPersonService personService)
         {
@@ -30,7 +29,7 @@ namespace Contact.API.Controllers
             return Ok(_personService.GetPersonById(1).GetValue());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Get(int id)
@@ -56,7 +55,7 @@ namespace Contact.API.Controllers
                 return Created("api/person", _personService.AddPerson(person));
             }
 
-            return StatusCode(400, result?.GetException()?.Message);
+            return StatusCode(400, result.GetException()?.Message);
         }
     }
 }
