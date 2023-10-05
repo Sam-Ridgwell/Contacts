@@ -4,10 +4,9 @@ namespace Contact.Domain.Objects
 {
     public class Person
     {
-        NameField _name = new NameField();
+        readonly NameField _name = new();
 
-        public string Name { get { return _name.Value; } set { _name.Value = value; } }
-
+        public string Name { get => _name.Value; set => _name.Value = value; }
 
         public Person(string name)
         {
