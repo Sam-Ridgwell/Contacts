@@ -37,6 +37,7 @@ namespace Contact.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post(PersonApo person)
         {
             if (_personService.AddPerson(person))
