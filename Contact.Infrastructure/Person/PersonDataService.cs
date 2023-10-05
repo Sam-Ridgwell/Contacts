@@ -1,11 +1,11 @@
-﻿using Contact.Application.InfrastructureRepository.DataObjects;
-using Contact.Application.InfrastructureRepository.Interfaces;
+﻿using Contact.Application.Person;
+using Contact.Domain.DataObjects;
 
 namespace Contact.Infrastructure.Person
 {
     public class PersonDataService : IPersonDataService
     {
-        public IPersonDto GetPersonById(int id)
+        public PersonDto GetPersonById(int id)
         {
             return new PersonDto("John Smith");
         }

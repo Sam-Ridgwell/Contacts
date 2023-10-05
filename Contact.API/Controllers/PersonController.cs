@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Contact.Application.Services.Interfaces;
-using Contact.Application.ApiRepository.ApiObjects;
+using Contact.Application.Person;
+using Contact.Domain.DataObjects;
 
 namespace Contact.API.Controllers
 {
@@ -45,7 +45,7 @@ namespace Contact.API.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Post(PersonApo person)
+        public IActionResult Post(PersonDto person)
         {
             var result = _personService.AddPerson(person);
 

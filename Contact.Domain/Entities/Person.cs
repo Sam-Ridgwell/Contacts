@@ -3,7 +3,7 @@ using Contact.Domain.Fields;
 
 namespace Contact.Domain.Objects
 {
-    public class Person : BaseObject
+    public class Person
     {
 
         [Required]

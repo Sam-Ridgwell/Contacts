@@ -1,7 +1,5 @@
-using Contact.Application.Services.Interfaces;
-using Contact.Application.Services;
-using Contact.Application.InfrastructureRepository.Interfaces;
 using Contact.Infrastructure.Person;
+using Contact.Application.Person;
 
 var builder = WebApplication.CreateBuilder(args);
 
