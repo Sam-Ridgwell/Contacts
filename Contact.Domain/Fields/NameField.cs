@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Contacts.Core;
 
 namespace Contact.Domain.Fields
 {
@@ -10,35 +11,25 @@ namespace Contact.Domain.Fields
     {
         private string _value = string.Empty;
 
+        [RegularExpression(@"^[\p{L} -]*$", ErrorMessage = "Name can only contain letters, spaces, and hyphens.")]
         public string Value { get => GetValue(); set => SetValue(value); }
 
         private void SetValue(string value)
         {
-            if (!IsValueValid(value))
-            {
-                throw new ValidationException("Name is not valid");
-            }
-
             _value = value;
-        }
-
-        private static bool IsValueValid(string value)
-        {
-            //name can only contain letters, spaces and hyphens
-            foreach (var c in value)
-            {
-                if (!char.IsLetter(c) && c != ' ' && c != '-')
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         private string GetValue()
         {
             return _value;
+        }
+        public Result<(bool, List<ValidationResult>)> Validate()
+        {
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(this);
+            var isValid = Validator.TryValidateObject(this, validationContext, validationResults, true);
+
+            return new Result<(bool, List<ValidationResult>)>((isValid, validationResults));
         }
     }
 }

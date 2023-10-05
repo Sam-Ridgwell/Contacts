@@ -29,32 +29,6 @@
         }
 
         [Fact]
-        public void TestSetValue_Success()
-        {
-            //Arrange
-            var result = new Result<int>(0);
-
-            //Act
-            result.SetValue(10);
-
-            //Assert
-            Assert.Equal(10, result.GetValue());
-        }
-
-        [Fact]
-        public void TestSetValue_Failure()
-        {
-            //Arrange
-            var result = new Result<int>(new Exception("Test"));
-
-            //Act
-            result.SetValue(10);
-
-            //Assert
-            Assert.Equal(10, result.GetValue());
-        }
-
-        [Fact]
         public void TestIsSuccess_Success()
         {
             //Arrange
@@ -104,32 +78,6 @@
 
             //Assert
             Assert.Equal("Test", exception?.Message);
-        }
-
-        [Fact]
-        public void TestSetException_Success()
-        {
-            //Arrange
-            var result = new Result<int>(5);
-
-            //Act
-            result.SetException(new Exception("Test"));
-
-            //Assert
-            Assert.False(result.IsSuccess());
-        }
-
-        [Fact]
-        public void TestSetException_Failure()
-        {
-            //Arrange
-            var result = new Result<int>(new Exception("Test"));
-
-            //Act
-            result.SetException(new Exception("New Test"));
-
-            //Assert
-            Assert.Equal("New Test", result.GetException()?.Message);
         }
     }
 }

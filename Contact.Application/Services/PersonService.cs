@@ -19,30 +19,30 @@ namespace Contact.Application.Services
 
         public Result<bool> AddPerson(IPersonApo personApo)
         {
-            Person person;
-            try
+            var person = new Person(personApo.Name);
+
+            var personIsValid = person.Validate();
+
+            if (!personIsValid.IsSuccess())
             {
-                person = new Person(personApo.Name);
-            }
-            catch (Exception ex)
-            {
-                return new Result<bool>(ex);
+                return new Result<bool>(personIsValid.GetException());
             }
 
-            return _personDataService.AddPerson(new PersonDto(person?.Name ?? "") );
+            return _personDataService.AddPerson(new PersonDto(person?.Name ?? ""));
+
         }
 
         public Result<IPersonApo> GetPersonById(int id)
         {
             var personData = _personDataService.GetPersonById(id);
-            Person person;
-            try
+
+            var person = new Person(personData.Name);
+
+            var personIsValid = person.Validate();
+
+            if (!personIsValid.IsSuccess())
             {
-               person = new Person(personData.Name);
-            } 
-            catch(Exception ex)
-            {
-                return new Result<IPersonApo>(ex);
+                return new Result<IPersonApo>(personIsValid.GetException());
             }
 
             return new Result<IPersonApo>( new PersonApo { Name = person.Name });

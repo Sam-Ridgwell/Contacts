@@ -2,9 +2,9 @@
 {
     public class Result<T>
     {
-        private T? _value;
-        private Exception? _exception;
-        private bool _isSuccess;
+        private readonly T? _value;
+        private readonly Exception? _exception;
+        private readonly bool _isSuccess;
 
         /// <summary>
         /// Creates a result with a value
@@ -41,17 +41,6 @@
         }
 
         /// <summary>
-        /// Sets the value and sets the result to true
-        /// </summary>
-        /// <param name="value"></param>
-        public void SetValue(T value)
-        {
-            _value = value;
-            _isSuccess = true;
-            _exception = null;
-        }
-
-        /// <summary>
         /// Returns true if the result is successful
         /// </summary>
         /// <returns></returns>
@@ -64,24 +53,14 @@
         /// Gets the exception if the result is not successful
         /// </summary>
         /// <returns></returns>
-        public Exception? GetException()
+        public Exception GetException()
         {
             if (_exception != null && !_isSuccess)
                 return _exception;
 
-            return null;
+            return new Exception();
         }
 
-        /// <summary>
-        /// Sets the exception and sets the result to false
-        /// </summary>
-        /// <param name="ex"></param>
-        public void SetException(Exception ex)
-        {
-            _exception = ex;
-            _isSuccess = false;
-            _value = default;
-        }
     }
     
 }
