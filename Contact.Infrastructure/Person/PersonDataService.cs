@@ -1,5 +1,6 @@
 ﻿using Contact.Application.InfrastructureRepository.DataObjects;
 using Contact.Application.InfrastructureRepository.Interfaces;
+using Contacts.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace Contact.Infrastructure.Person
             return new PersonDto("John Smith");
         }
 
-        public bool AddPerson(PersonDto person)
+        public Result<bool> AddPerson(PersonDto person)
         {
-            return true;
+            return new Result<bool>(true);
         }
     }
 }

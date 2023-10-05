@@ -70,7 +70,7 @@ namespace Contacts.Core.Test
             var isSuccess = result.IsSuccess();
 
             //Assert
-            Assert.Equal(true, isSuccess);
+            Assert.True(isSuccess);
         }
 
         [Fact]
@@ -83,7 +83,7 @@ namespace Contacts.Core.Test
             var isSuccess = result.IsSuccess();
 
             //Assert
-            Assert.Equal(false, isSuccess);
+            Assert.False(isSuccess);
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace Contacts.Core.Test
             var exception = result.GetException();
 
             //Assert
-            Assert.Equal(null, exception);
+            Assert.Null(exception);
         }
 
         [Fact]
@@ -122,7 +122,7 @@ namespace Contacts.Core.Test
             result.SetException(new Exception("Test"));
 
             //Assert
-            Assert.Equal(false, result.IsSuccess());
+            Assert.False(result.IsSuccess());
         }
 
         [Fact]

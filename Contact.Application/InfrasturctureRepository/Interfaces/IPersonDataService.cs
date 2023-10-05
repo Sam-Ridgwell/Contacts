@@ -1,4 +1,5 @@
 ﻿using Contact.Application.InfrastructureRepository.DataObjects;
+using Contacts.Core;
 
 namespace Contact.Application.InfrastructureRepository.Interfaces
 {
@@ -6,7 +7,7 @@ namespace Contact.Application.InfrastructureRepository.Interfaces
     {
         public IPersonDto GetPersonById(int id);
 
-        public bool AddPerson(PersonDto person);
+        public Result<bool> AddPerson(PersonDto person);
 
     }
 }

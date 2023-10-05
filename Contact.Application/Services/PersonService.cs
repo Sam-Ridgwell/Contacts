@@ -4,6 +4,7 @@ using Contact.Application.InfrastructureRepository.DataObjects;
 using Contact.Application.InfrastructureRepository.Interfaces;
 using Contact.Application.Services.Interfaces;
 using Contact.Domain.Objects;
+using Contacts.Core;
 
 namespace Contact.Application.Services
 {
@@ -17,20 +18,35 @@ namespace Contact.Application.Services
             this._personDataService = personDataService;
         }
 
-        public bool AddPerson(IPersonApo personApo)
+        public Result<bool> AddPerson(IPersonApo personApo)
         {
-            Person person = new Person(personApo.Name);
+            Person person;
+            try
+            {
+                person = new Person(personApo.Name);
+            }
+            catch (Exception ex)
+            {
+                return new Result<bool>(ex);
+            }
 
-            return _personDataService.AddPerson(new PersonDto(person.Name) );
+            return _personDataService.AddPerson(new PersonDto(person?.Name ?? "") );
         }
 
-        public IPersonApo GetPersonById(int id)
+        public Result<IPersonApo> GetPersonById(int id)
         {
             var personData = _personDataService.GetPersonById(id);
+            Person person;
+            try
+            {
+               person = new Person(personData.Name);
+            } 
+            catch(Exception ex)
+            {
+                return new Result<IPersonApo>(ex);
+            }
 
-            Person person = new Person(personData.Name);
-
-            return new PersonApo { Name = person.Name };
+            return new Result<IPersonApo>( new PersonApo { Name = person.Name });
         }
     }
 }

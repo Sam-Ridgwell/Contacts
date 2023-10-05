@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Contact.Application.Services.Interfaces;
 using Contact.Application.ApiRepository.ApiObjects;
+using System.ComponentModel.DataAnnotations;
 
 namespace Contact.API.Controllers
 {
@@ -19,7 +20,14 @@ namespace Contact.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Get()
         {
-            return Ok(_personService.GetPersonById(1));
+            var result = _personService.GetPersonById(1);
+
+            if (!result.IsSuccess())
+            {
+                return StatusCode(500);
+            }
+
+            return Ok(_personService.GetPersonById(1).GetValue());
         }
 
         [HttpGet("{id}")]
@@ -37,16 +45,18 @@ namespace Contact.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult Post(PersonApo person)
         {
-            if (_personService.AddPerson(person))
+            var result = _personService.AddPerson(person);
+
+
+            if (result.IsSuccess())
             {
                 return Created("api/person", _personService.AddPerson(person));
             }
 
-            return StatusCode(500);
+            return StatusCode(400, result?.GetException()?.Message);
         }
-
     }
 }
