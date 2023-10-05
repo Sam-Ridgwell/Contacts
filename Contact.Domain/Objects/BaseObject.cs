@@ -51,11 +51,11 @@ public class BaseObject
         foreach (var property in properties)
         {
 
-            var p = property.PropertyType.GetInterfaces();
+            var propertysInterfaces = property.PropertyType.GetInterfaces();
 
-            var y = p.Where(p => p.Name.StartsWith("IField")).First();
+            var iFieldInterface = propertysInterfaces.Where(p => p.Name.StartsWith("IField")).First();
             // Check if the property type implements the IField<> generic interface  
-            if (y != null)
+            if (iFieldInterface != null)
             {
                 // Get the instance of the property  
                 var fieldValue = property.GetValue(this);
