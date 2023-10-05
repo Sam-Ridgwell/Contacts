@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Contact.Domain\Contact.Domain.csproj" />
-    <ProjectReference Include="..\Contacts.Core\Contacts.Core.csproj" />
-  </ItemGroup>
-
 </Project>
